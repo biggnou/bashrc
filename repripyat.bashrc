@@ -76,10 +76,16 @@ alias tailq='mailq | tail'
 alias blamavis='ps auxwwf | grep amavis'
 function spamalyze() { if [[ $# = 1 ]]; then spamassassin -D 2>&1 < "$1" | less ; else echo "You should feed me with an email..."; fi }
 
-# set PATH so it includes my private bin and hosts-tools:
+# set PATH so it includes my private bin, hosts-tools and git_projects:
 if [ -d ~/bin ] ; then
-    PATH=~/git_projects/host-tools:~/bin:"${PATH}"
+    PATH=~/bin:"${PATH}"
 fi 
+if [ -d ~/host-tools ] ; then
+    PATH=~/host-tools:"${PATH}"
+fi
+if [ -d ~/git_projects/host-tools ]; then
+    PATH=~/git_projects/host-tools:"${PATH}"
+fi
 
 export EDITOR="em"
 export VISUAL="em"
