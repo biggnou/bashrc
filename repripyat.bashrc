@@ -74,7 +74,7 @@ fi
 alias lintme='spamassassin --lint'
 alias tailq='mailq | tail'
 alias blamavis='ps auxwwf | grep amavis'
-
+function spamalyze() { if [[ $# = 1 ]]; then spamassassin -D 2>&1 < "$1" | less ; else echo "You should feed me with an email..."; fi }
 
 # set PATH so it includes my private bin and hosts-tools:
 if [ -d ~/bin ] ; then
