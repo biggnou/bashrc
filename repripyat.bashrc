@@ -11,8 +11,8 @@ shopt -s histappend
 shopt -s checkwinsize
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=5000
-HISTFILESIZE=5000
+HISTSIZE=50000
+HISTFILESIZE=50000
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -38,7 +38,7 @@ case "$TERM" in
         ;;
     screen*)
         PROMPT_COMMAND='echo -ne "\033]0;SCREEN @${HOSTNAME%%.*}\007"'
-        PS1='\u\[\033[1;33m\]@\[\033[0m\]\h\[\033[1;33m\]:\[\033[0m\] \w\$'
+        PS1='\u\[\033[1;33m\]@\[\033[0m\]\h\[\033[1;33m\]:\[\033[0m\] \w\$ '
         ;;
     *)
         PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -63,7 +63,7 @@ fi
 #those should go in .bash_aliases:
 alias ll='ls -lh'
 alias lld='ls -ld'
-alias la='ls -lah'
+alias la='ls -lash'
 alias cc='clear'
 alias rs='reset'
 alias less='less -n'
@@ -75,14 +75,13 @@ alias lintme='spamassassin --lint'
 alias tailq='mailq | tail'
 alias blamavis='ps auxwwf | grep amavis'
 function spamalyze() { if [[ $# = 1 ]]; then spamassassin -D 2>&1 < "$1" | less ; else echo "You should feed me with an email..."; fi }
+alias labr="ssh -t laboratoire 'cd sa-rules; exec bash -'"
+alias labc="ssh -t laboratoire 'cd sa-corpus; exec bash -'"
 
 # set PATH so it includes my private bin, hosts-tools and git_projects:
 if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
 fi 
-if [ -d ~/host-tools ] ; then
-    PATH=~/host-tools:"${PATH}"
-fi
 if [ -d ~/git_projects/host-tools ]; then
     PATH=~/git_projects/host-tools:"${PATH}"
 fi
