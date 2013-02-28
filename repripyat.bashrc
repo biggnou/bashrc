@@ -72,16 +72,17 @@ if [ -f '/usr/bin/colordiff' ]; then
 fi
 #alias em='emacs -nw'
 alias lintme='spamassassin --lint'
-alias tailq='mailq | tail'
+alias tailq='echo; date; mailq | tail -2; echo'
 alias blamavis='ps auxwwf | grep amavis'
 function spamalyze() { if [[ $# = 1 ]]; then spamassassin -D 2>&1 < "$1" | less ; else echo "You should feed me with an email..."; fi }
 alias labr="ssh -t laboratoire 'cd sa-rules; exec bash -'"
 alias labc="ssh -t laboratoire 'cd sa-corpus; exec bash -'"
+alias pfconnections="echo $(hostname) $(date); echo -n 'in: '; netstat --tcp --numeric-ports 25 | grep `dig +short $(hostname)`:25 | wc -l ; echo -n 'out: '; netstat --tcp --numeric-ports 25 | grep \:25 | grep -v `dig +short $(hostname)`:25 | wc -l"
 
 # set PATH so it includes my private bin, hosts-tools and git_projects:
 if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
-fi 
+fi
 if [ -d ~/git_projects/host-tools ]; then
     PATH=~/git_projects/host-tools:"${PATH}"
 fi
