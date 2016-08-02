@@ -35,6 +35,7 @@ case "$TERM" in
     xterm*|gnome*)
         PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
         PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+	PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
         ;;
     screen*)
         PROMPT_COMMAND='echo -ne "\033]0;SCREEN @${HOSTNAME%%.*}\007"'
@@ -67,12 +68,24 @@ alias la='ls -lash'
 alias cc='clear'
 alias rs='reset'
 alias less='less -n'
+alias steve="jobs -l"
 if [ -f '/usr/bin/colordiff' ]; then
     alias diff='colordiff'
 fi
 alias em='emacs -nw'
-export EDITOR="em"
 
+alias ftpdepot='ftp ftpdepot.bmc.com'
+alias sftpdepot='sftp sftp.bmc.com'
+alias shitdown='shutdown -h now'
+
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ../../..'
+alias .3='cd ../../..'
+alias ....='cd ../../../..'
+alias .4='cd ../../../..'
+alias .....='cd ../../../..'
+alias .5='cd ../../../../..'
 
 # set PATH so it includes my private bin, hosts-tools and git_projects:
 if [ -d ~/bin ] ; then
@@ -87,3 +100,6 @@ PERL5LIB="/home/alex/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/alex/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/alex/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/alex/perl5"; export PERL_MM_OPT;
+
+# required for MiniVim
+stty -ixon
