@@ -61,23 +61,25 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-#those should go in .bash_aliases:
+# all aliases should go in .bash_aliases:
+# basics:
 alias ll='ls -lh'
 alias lld='ls -ld'
 alias la='ls -lash'
 alias cc='clear'
 alias rs='reset'
 alias less='less -n'
-alias steve="jobs -l"
 if [ -f '/usr/bin/colordiff' ]; then
     alias diff='colordiff'
 fi
 alias em='emacs -nw'
 
-alias ftpdepot='ftp ftpdepot.bmc.com'
-alias sftpdepot='sftp sftp.bmc.com'
+# useless but fun:
 alias shitdown='shutdown -h now'
+alias steve="jobs -l"
+alias killl="echo That\'s a little bit overkill, isn\'t it?"
 
+# kind of useful actually:
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../../..'
@@ -86,6 +88,10 @@ alias ....='cd ../../../..'
 alias .4='cd ../../../..'
 alias .....='cd ../../../..'
 alias .5='cd ../../../../..'
+
+# job related:
+alias ftpdepot='ftp ftpdepot.bmc.com'
+alias sftpdepot='sftp sftp.bmc.com'
 
 # set PATH so it includes my private bin, hosts-tools and git_projects:
 if [ -d ~/bin ] ; then
